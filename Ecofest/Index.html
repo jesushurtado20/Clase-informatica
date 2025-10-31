@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Memecon — Música y Memes</title>
+  <meta name="description" content="EcoFest: festival de música sostenible. Talleres, foodtrucks eco, artistas locales y más." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Tipografía opcional de Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Enlace para saltar al contenido: accesibilidad -->
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- CABECERA / NAV -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">
+        <!-- Si no tienes logo.svg, deja el texto -->
+        <img src="img/img_1.jpg" alt="" class="logo" aria-hidden="true" />
+        <span class="brand-text">Memecon 25-26</span>
+      </a>
+
+      <nav class="nav">
+        <a href="#programa">Memes 2024</a>
+        <a href="#talleres">Memes 2016</a>
+        <a href="#entradas" class="btn btn--small">Entradas</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <h1>El Festival de Memes <span class="highlight">Mas grande de europa</span></h1>
+        <p class="lead">
+          14–16 de junio, Wizink center, comida local y memes recien hechos.
+        </p>
+        <div class="hero-cta">
+          <a href="#entradas" class="btn">Comprar entradas</a>
+          <a href="#programa" class="btn btn--ghost">Ver recopilatorio 2024</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <!-- Imagen remota temporal: puedes cambiarla por una local en /img -->
+        <img src="img/el_gatoo.webp" alt="Público disfrutando de un concierto al aire libre" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main id="contenido" class="main">
+    <!-- BLOQUE DESTACOS (Grid) -->
+    <section id="programa" class="section">
+      <div class="container">
+        <h2>Programa y destacados</h2>
+        <p class="section-desc">Tres días de música, gastronomía local y actividades para todas las edades.</p>
+
+        <div class="grid-cards">
+          <article class="card">
+            <img src="img/marshmello.jfif" alt="Banda tocando en el escenario" />
+            <div class="card-body">
+              <h3>Escenario Meme</h3>
+              <p>Artistas locales y nacionales con energía 100% renovable.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="img/burgers.jpg" alt="Puesto de comida sostenible" />
+            <div class="card-body">
+              <h3>Foodtrucks Km 0</h3>
+              <p>Menús de temporada y envases compostables.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="img/torneo.png" alt="Gente en taller de reciclaje creativo" />
+            <div class="card-body">
+              <h3>Meme creator Cup</h3>
+              <p>Crea tus propios memes y compite por ser el mejor!</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="https://picsum.photos/600/400?random=4" alt="Zona de descanso con sombra" />
+            <div class="card-body">
+              <h3>Zona Chill</h3>
+              <p>Descanso, sombras y puntos de agua potable.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS (Flexbox) -->
+    <section class="section alt">
+      <div class="container">
+        <h2>Lo que dice la gente</h2>
+        <div class="testimonials">
+          <blockquote class="quote">
+            <p>“El mejor festival familiar al que hemos ido. ¡Volveremos!”</p>
+            <footer>— Marta, 34</footer>
+          </blockquote>
+          <blockquote class="quote">
+            <p>“Música increíble y una organización respetuosa con el entorno.”</p>
+            <footer>— Dani, 28</footer>
+          </blockquote>
+          <blockquote class="quote">
+            <p>“Comida riquísima y talleres muy prácticos.”</p>
+            <footer>— Laura, 41</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- TALLERES (lista con iconos) -->
+    <section id="talleres" class="section">
+      <div class="container">
+        <h2>Talleres</h2>
+        <ul class="feature-list">
+          <li>
+            <span class="feature-emoji" aria-hidden="true">🌱</span>
+            Huerto urbano en casa
+          </li>
+          <li>
+            <span class="feature-emoji" aria-hidden="true">🛠️</span>
+            Reparación de bicicletas
+          </li>
+          <li>
+            <span class="feature-emoji" aria-hidden="true">🎨</span>
+            Reciclaje creativo para peques
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FORMULARIO -->
+    <section id="entradas" class="section alt">
+      <div class="container">
+        <h2>Entradas</h2>
+        <p class="section-desc">Rellena el formulario y te enviaremos las opciones disponibles.</p>
+
+        <form class="form" aria-labelledby="entradas">
+          <div class="form-row">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" required />
+          </div>
+
+          <div class="form-row">
+            <label for="email">Correo</label>
+            <input id="email" name="email" type="email" placeholder="tucorreo@ejemplo.com" required />
+          </div>
+
+          <fieldset class="form-row">
+            <legend>Tipo de entrada</legend>
+            <label><input type="radio" name="tipo" value="dia" checked /> Día</label>
+            <label><input type="radio" name="tipo" value="abono" /> Abono (3 días)</label>
+          </fieldset>
+
+          <div class="form-row">
+            <label for="mensaje">Comentarios</label>
+            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Preferencias, alergias..."></textarea>
+          </div>
+
+          <button type="submit" class="btn">Enviar solicitud</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIE -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> EcoFest. Hecho con HTML &amp; CSS.</p>
+      <a href="#top" class="back-to-top">↑ Volver arriba</a>
+    </div>
+  </footer>
+
+  <!-- Script mínimo para el año (opcional, no se evalúa en CSS/HTML) -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
