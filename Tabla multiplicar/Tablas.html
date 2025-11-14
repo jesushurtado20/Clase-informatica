@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla de Multiplicar</title>
+</head>
+<body>
+    <h1>Tablas de multiplicar</h1>
+
+    <p>Introduce un número:</p>
+    <input type="text" id="numero">
+    <button onclick="generarTabla()">Tabla de multiplicar</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function generarTabla() {
+            const numInput = document.getElementById('numero');
+            const num = parseInt(numInput.value);
+            const contenedor = document.getElementById('resultado');
+
+            contenedor.innerHTML = '<h2>Tabla del ' + num + '</h2>';
+
+            let html = '';
+            for (let i = 0; i < 10; i++) {
+                html += '<p>' + num + ' x ' + i + ' = ' + (num * i) + '</p>';
+            }
+            contenedor.innerHTML += html;
+        }
+    </script>
+</body>
+</html>
