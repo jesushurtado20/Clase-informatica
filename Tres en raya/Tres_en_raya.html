@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuadrícula 3x3 con círculos</title>
+</head>
+<body>
+    <canvas id="lienzo" width="300" height="300" style="border:1px solid black"></canvas>
+
+    <p id="turno" style="font-size:20px; font-weight:bold"></p>
+    <button onclick="reiniciar()">Reiniciar</button>
+
+    <p>Modo de juego:</p>
+    <button onclick="setModo('pvp')">Jugador vs Jugador</button>
+    <button onclick="setModo('ia')">Jugador vs IA</button>
+
+    <script>
+        const canvas = document.getElementById("lienzo");
+        const ctx = canvas.getContext("2d");
+
+        const size = 100;
+        let board = Array(9).fill("");
+        let current = "X"; // Siempre empezar con X
+        let gameOver = false;
+        let vsIA = true;
+        let modo = 'ia';
+
+        function circulo(x, y, radio, color) {
+            ctx.beginPath();
+            ctx.arc(x, y, radio, 0, Math.PI * 2);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 5;
+            ctx.stroke();
+        }
+
+        function linea(x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.lineWidth = 3;
+            ctx.stroke();
+        }
+
+        function dibujarTablero() {
+            ctx.clearRect(0, 0, 300, 300);
+
+            for (let i = 1; i < 3; i++) {
+                linea(i * size, 0, i * size, 300);
+                linea(0, i * size, 300, i * size);
+            }
+
+            for (let i = 0; i < 9; i++) {
+                let row = Math.floor(i / 3);
+                let col = i % 3;
+                let x = col * size + size / 2;
+                let y = row * size + size / 2;
+
+                if (board[i] === "O") circulo(x, y, 30, "blue");
+                if (board[i] === "X") {
+                    ctx.strokeStyle = "red";
+                    ctx.lineWidth = 5;
+                    ctx.beginPath();
+                    ctx.moveTo(x - 25, y - 25);
+                    ctx.lineTo(x + 25, y + 25);
+                    ctx.moveTo(x + 25, y - 25);
+                    ctx.lineTo(x - 25, y + 25);
+                    ctx.stroke();
+                }
+            }
+            actualizarTurno();
+        }
+
+        function comprobarGanador() {
+            const winLines = [
+                [0,1,2],[3,4,5],[6,7,8],
+                [0,3,6],[1,4,7],[2,5,8],
+                [0,4,8],[2,4,6]
+            ];
+
+            for (let line of winLines) {
+                const [a,b,c] = line;
+                if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                    return board[a];
+                }
+            }
+            return board.includes("") ? null : "Empate";
+        }
+
+        function iaJugar() {
+            if (gameOver) return;
+
+            let vacias = board.map((v,i)=> v==="" ? i : null).filter(v=> v!==null);
+            if (vacias.length === 0) return;
+
+            
+            let eleccion = vacias[Math.floor(Math.random() * vacias.length)];
+            board[eleccion] = current;
+            
+            current = current === "X" ? "O" : "X";
+            dibujarTablero();
+
+            const result = comprobarGanador();
+            if (result) fin(result);
+        }
+
+        canvas.addEventListener("click", function(e){
+            if (gameOver) return;
+            
+            if (vsIA && current !== "X") return;
+
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const col = Math.floor(x / size);
+            const row = Math.floor(y / size);
+            const index = row * 3 + col;
+
+            if (board[index] !== "") return;
+
+            
+            board[index] = current;
+            
+            current = current === "X" ? "O" : "X";
+
+            dibujarTablero();
+
+            const result = comprobarGanador();
+            if (result) return fin(result);
+
+           
+            if (vsIA && current === 'O') setTimeout(iaJugar, 300);
+        });
+
+        function fin(res) {
+            gameOver = true;
+            setTimeout(() => alert(res === "Empate" ? "Empate" : res + " gana!"), 50);
+        }
+
+        function setModo(m) {
+            modo = m;
+            vsIA = (m === 'ia');
+            reiniciar();
+        }
+
+        function reiniciar() {
+            board = Array(9).fill("");
+            gameOver = false;
+            current = "X";
+            dibujarTablero();
+        }
+
+        function actualizarTurno() {
+            const turno = document.getElementById("turno");
+            if (!turno) return;
+            if (current === "X") {
+                turno.innerHTML = "Turno: <span style='color:red'>X</span>";
+            } else {
+                turno.innerHTML = "Turno: <span style='color:blue'>O</span>";
+            }
+        }
+
+        dibujarTablero();
+    </script>
+</body>
+</html>
